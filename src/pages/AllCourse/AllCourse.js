@@ -6,7 +6,7 @@ import CourseCard from '../CourseCard/CourseCard';
 const AllCourse = () => {
     const [courseDetails, setCourseDetails] = useState([])
     useEffect(() => {
-        fetch('http://localhost:5000/courses')
+        fetch('https://edu-planner-server.vercel.app/courses')
             .then(res => res.json())
             .then(data => setCourseDetails(data))
     }, [])

@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import { useNavigate } from 'react-router-dom';
+import { FormGroup } from 'react-bootstrap';
 
 const Register = () => {
     const [error, setError] = useState('')
@@ -26,7 +27,7 @@ const Register = () => {
                 const user = result.user;
                 console.log(user);
                 setError('')
-                form.reset();
+                form.reset()
 
 
                 handleUpdateUserProfile(name, photoURL)

@@ -37,14 +37,14 @@ function App() {
             {
               path: "/course/:id",
               element: <RightSide></RightSide>,
-              loader: ({ params }) => fetch(`http://localhost:5000/course/${params.id}`)
+              loader: ({ params }) => fetch(`https://edu-planner-server.vercel.app/course/${params.id}`)
             },
           ]
         },
         {
           path: "/courses/:id",
           element: <IndividualCourse></IndividualCourse>,
-          loader: ({ params }) => fetch(`http://localhost:5000/courses/${params.id}`)
+          loader: ({ params }) => fetch(`https://edu-planner-server.vercel.app/courses/${params.id}`)
         },
 
         {
@@ -66,7 +66,7 @@ function App() {
         {
           path: "/checkout/:id",
           element: <PrivateRoute> <Checkout></Checkout> </PrivateRoute>,
-          loader: ({ params }) => fetch(`http://localhost:5000/checkout/${params.id}`)
+          loader: ({ params }) => fetch(`https://edu-planner-server.vercel.app/checkout/${params.id}`)
         },
       ]
     }
