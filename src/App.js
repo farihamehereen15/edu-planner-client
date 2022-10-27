@@ -11,6 +11,7 @@ import Home from './pages/Home/Home';
 import IndividualCourse from './pages/IndividualCourse/IndividualCourse';
 import RightSide from './pages/RightSide/RightSide';
 import Login from './pages/Login/Login';
+import Register from './pages/Register/Register';
 
 
 function App() {
@@ -55,7 +56,11 @@ function App() {
         {
           path: "/login",
           element: <Login></Login>
-        }
+        },
+        {
+          path: "/register",
+          element: <Register></Register>
+        },
       ]
     }
   ])

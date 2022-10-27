@@ -2,15 +2,23 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import "./NavBar.css"
+import { faCommentsDollar, faUser } from '@fortawesome/free-solid-svg-icons';
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
+import { Button, Image } from 'react-bootstrap';
 import { useContext } from 'react';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const NavBar = () => {
-    const { user } = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.error(error))
+    }
     return (
         <div>
             <Navbar bg="light" expand="lg">
@@ -19,13 +27,36 @@ const NavBar = () => {
 
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="ms-auto fariha">
+                        <Nav className="me-auto fariha">
                             <Link to='/course'>Course</Link>
                             <Link to='/faq'>FAQ</Link>
                             <Link to='/blog'>Blog</Link>
-                            <Link >{user?.displayName}</Link>
-                            <Link to='/login'> <Button variant='light'>Log In</Button> </Link>
+
                         </Nav>
+                        <Link >
+                            {user?.uid ?
+                                <>
+                                    <span>{user?.displayName}</span>
+                                    <Button onClick={handleLogOut} variant='light'>Log Out</Button>
+
+
+                                </>
+
+                                :
+                                <>
+                                    <Link to='/login'> <Button variant='light'>Log In</Button> </Link>
+                                    <Link to='/register'> <Button variant='light'>Register</Button> </Link>
+
+
+                                </>
+
+                            }
+                        </Link>
+                        <Link >{user?.photoURL ?
+                            <Image style={{ height: '30px' }} roundedCircle src={user?.photoURL}></Image> : <FontAwesomeIcon icon={faUser}></FontAwesomeIcon>
+                        }
+                        </Link>
+
 
 
 

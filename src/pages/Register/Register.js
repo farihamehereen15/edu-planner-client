@@ -1,50 +1,50 @@
-import { GoogleAuthProvider } from 'firebase/auth';
 import React from 'react';
 import { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
-const Login = () => {
+const Register = () => {
 
-
-    const { providerLogin, signIn } = useContext(AuthContext);
-    const googleProvider = new GoogleAuthProvider()
-
-    const handleGoogleSignIn = () => {
-        providerLogin(googleProvider)
-            .then(result => {
-                const user = result.user;
-                console.log(user);
-            })
-            .catch(error => console.log(error))
-    }
+    const { createUser } = useContext(AuthContext)
 
     const handleSubmit = event => {
         event.preventDefault();
         const form = event.target;
-
+        const name = form.name.value;
+        const photoURL = form.photoURL.value;
         const email = form.email.value;
         const password = form.password.value;
-        signIn(email, password)
+
+        createUser(email, password)
             .then(result => {
                 const user = result.user;
                 console.log(user);
                 form.reset();
-
             })
-            .catch(error => console.error(error))
+            .catch(e => console.error(e))
 
     }
     return (
-
         <div className='container w-50 my-5'>
             <Form onSubmit={handleSubmit}>
+
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label>Full Name</Form.Label>
+                    <Form.Control name="name" type="text" placeholder="Your Full Name" />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label>photoURL</Form.Label>
+                    <Form.Control name="photoURL" type="text" placeholder="photoURL" />
+                </Form.Group>
+
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control name="email" type="email" placeholder="Enter email" required />
 
                 </Form.Group>
+
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
@@ -52,24 +52,16 @@ const Login = () => {
                 </Form.Group>
 
                 <Button variant="primary" type="submit" >
-                    Submit
+                    Register
                 </Button> <br />
                 <Form.Text className="text-muted">
                     We'll never share your email with anyone else.
                 </Form.Text> <br />
-                <Button onClick={handleGoogleSignIn} variant="outline-primary" type="submit" className='my-1' >
-                    Log In with Google
-                </Button> <br />
-                <Button variant="outline-primary" type="submit" >
-                    Log In with Github
-                </Button>
+
             </Form>
 
         </div>
-
     );
-}
+};
 
-
-
-export default Login;
+export default Register;
