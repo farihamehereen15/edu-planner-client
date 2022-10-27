@@ -3,9 +3,12 @@ import React from 'react';
 import { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
+
+    const navigate = useNavigate()
 
 
     const { providerLogin, signIn } = useContext(AuthContext);
@@ -31,6 +34,7 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 form.reset();
+                navigate('/course')
 
             })
             .catch(error => console.error(error))

@@ -2,9 +2,9 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import "./NavBar.css"
-import { faCommentsDollar, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faMoon, faLightbulb } from '@fortawesome/free-solid-svg-icons';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Image } from 'react-bootstrap';
 import { useContext } from 'react';
@@ -13,6 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const NavBar = () => {
     const { user, logOut } = useContext(AuthContext)
+    const [open, setOpen] = useState(true);
 
     const handleLogOut = () => {
         logOut()
@@ -24,6 +25,12 @@ const NavBar = () => {
             <Navbar bg="light" expand="lg">
                 <Container>
                     <Navbar.Brand className='fw-bold' href="#home"><span className='text-warning fw-bold'>Edu</span> Planner</Navbar.Brand>
+
+                    <div onClick={() => setOpen(!open)} className="h-3 w-3 ms-auto p-3">
+                        {
+                            open ? <FontAwesomeIcon icon={faLightbulb} /> : <FontAwesomeIcon icon={faMoon}></FontAwesomeIcon>
+                        }
+                    </div>
 
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
@@ -61,6 +68,7 @@ const NavBar = () => {
 
 
                     </Navbar.Collapse>
+
                 </Container>
             </Navbar>
 
