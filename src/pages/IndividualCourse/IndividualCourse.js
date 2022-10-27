@@ -2,17 +2,23 @@ import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import ReactPrint from "react-to-print"
+import { useRef } from 'react';
 
 
 const IndividualCourse = () => {
+    const ref = useRef()
     const coursesDetails = useLoaderData()
     const { details, price, img, name, _id } = coursesDetails
     return (
-        <div className='container my-5 shadow rounded'>
+        <div ref={ref} className='container my-5 shadow rounded'>
+
             <Card className='border-0 p-2'>
                 <Card.Img variant="top" height={'400px'} className='rounded-2' src={img} />
                 <Card.Body>
                     <Card.Title>{name}</Card.Title>
+                    <ReactPrint trigger={() => <button>download</button>} content={() => ref.current}></ReactPrint>
+
                     <Card.Text>
                         {details}
                     </Card.Text>
