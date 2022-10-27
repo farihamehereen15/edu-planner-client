@@ -3,6 +3,7 @@ import { useLoaderData } from 'react-router-dom';
 import CourseCard from '../CourseCard/CourseCard';
 
 const RightSide = () => {
+
     const courseDetails = useLoaderData()
     return (
         <div>
