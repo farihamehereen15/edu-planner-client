@@ -5,8 +5,12 @@ import "./NavBar.css"
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+import { useContext } from 'react';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const NavBar = () => {
+    const { user } = useContext(AuthContext)
     return (
         <div>
             <Navbar bg="light" expand="lg">
@@ -19,6 +23,8 @@ const NavBar = () => {
                             <Link to='/course'>Course</Link>
                             <Link to='/faq'>FAQ</Link>
                             <Link to='/blog'>Blog</Link>
+                            <Link >{user?.displayName}</Link>
+                            <Link to='/login'> <Button variant='light'>Log In</Button> </Link>
                         </Nav>
 
 
