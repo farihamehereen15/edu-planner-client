@@ -69,6 +69,10 @@ function App() {
           loader: ({ params }) => fetch(`https://edu-planner-server.vercel.app/checkout/${params.id}`)
         },
       ]
+    },
+    {
+      path: "*",
+      element: <div>Error : 404</div>
     }
   ])
   return (
