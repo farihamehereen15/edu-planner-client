@@ -6,7 +6,7 @@ import Card from 'react-bootstrap/Card';
 
 const IndividualCourse = () => {
     const coursesDetails = useLoaderData()
-    const { details, price, img, name } = coursesDetails
+    const { details, price, img, name, _id } = coursesDetails
     return (
         <div className='container my-5 shadow rounded'>
             <Card className='border-0 p-2'>
@@ -21,8 +21,8 @@ const IndividualCourse = () => {
                     </Card.Text>
                     <Link to={"/course"}><Button className='me-3' variant="primary">Go Back To All News</Button></Link>
 
+                    <Link to={`/checkout/${_id}`}><Button variant="primary">Get Primium Acces</Button></Link>
 
-                    <Button variant="primary">Get Primium Acces</Button>
                 </Card.Body>
             </Card>
         </div>

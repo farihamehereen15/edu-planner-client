@@ -12,6 +12,8 @@ import IndividualCourse from './pages/IndividualCourse/IndividualCourse';
 import RightSide from './pages/RightSide/RightSide';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
+import Checkout from './pages/CheckOut/Checkout';
+import PrivateRoute from './pages/PrivateRoute/PrivateRoute';
 
 
 function App() {
@@ -60,6 +62,11 @@ function App() {
         {
           path: "/register",
           element: <Register></Register>
+        },
+        {
+          path: "/checkout/:id",
+          element: <PrivateRoute> <Checkout></Checkout> </PrivateRoute>,
+          loader: ({ params }) => fetch(`http://localhost:5000/checkout/${params.id}`)
         },
       ]
     }

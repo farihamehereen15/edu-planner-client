@@ -4,9 +4,11 @@ import { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
     const [error, setError] = useState('')
+
 
 
     const { createUser, updateUserProfile } = useContext(AuthContext)
@@ -25,7 +27,10 @@ const Register = () => {
                 console.log(user);
                 setError('')
                 form.reset();
+
+
                 handleUpdateUserProfile(name, photoURL)
+
             })
             .catch(e => {
                 console.error(e);
