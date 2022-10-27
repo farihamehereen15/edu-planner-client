@@ -65,17 +65,17 @@ function App() {
         },
         {
           path: "/checkout/:id",
-          element:
-            loader: ({ params }) => fetch(`http://localhost:5000/checkout/${params.id}`)
-},
+          element: <PrivateRoute> <Checkout></Checkout> </PrivateRoute>,
+          loader: ({ params }) => fetch(`http://localhost:5000/checkout/${params.id}`)
+        },
       ]
     }
   ])
-return (
-  <div>
-    <RouterProvider router={router}></RouterProvider>
-  </div>
-);
+  return (
+    <div>
+      <RouterProvider router={router}></RouterProvider>
+    </div>
+  );
 }
 
 export default App;
